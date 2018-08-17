@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="如果说ipython是一个增强的交互式python shell，那么qtconsole便是再次增强的ipython。 以前我是喜欢用ipython的，后来接触到qtconsole时感受到了强大之处，但是qtconsole一直让我不满意，默认的白色和默认的字体都让我非常抵触，与ipython的酷炫黑形成鲜明对比。可能因为国内很少有开发者使用qtconsole的原因，相关的教程也是非常少。 更改启动方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qtconsole进阶玩法">
+<meta property="og:url" content="http://yoursite.com/qtconsole进阶玩法/index.html">
+<meta property="og:site_name" content="Codeslant">
+<meta property="og:description" content="如果说ipython是一个增强的交互式python shell，那么qtconsole便是再次增强的ipython。 以前我是喜欢用ipython的，后来接触到qtconsole时感受到了强大之处，但是qtconsole一直让我不满意，默认的白色和默认的字体都让我非常抵触，与ipython的酷炫黑形成鲜明对比。可能因为国内很少有开发者使用qtconsole的原因，相关的教程也是非常少。 更改启动方">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s5.postimg.cc/bpn7qim9j/qtconsole_properties.png">
+<meta property="og:image" content="https://s5.postimg.cc/goaq51xs7/qtconsole_configuration.png">
+<meta property="og:image" content="https://s5.postimg.cc/pw2ylrck7/jupyterqtconsole.png">
+<meta property="og:updated_time" content="2018-08-17T11:40:25.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="qtconsole进阶玩法">
+<meta name="twitter:description" content="如果说ipython是一个增强的交互式python shell，那么qtconsole便是再次增强的ipython。 以前我是喜欢用ipython的，后来接触到qtconsole时感受到了强大之处，但是qtconsole一直让我不满意，默认的白色和默认的字体都让我非常抵触，与ipython的酷炫黑形成鲜明对比。可能因为国内很少有开发者使用qtconsole的原因，相关的教程也是非常少。 更改启动方">
+<meta name="twitter:image" content="https://s5.postimg.cc/bpn7qim9j/qtconsole_properties.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>qtconsole进阶玩法</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">previous</span>
+      <span id="i-next" class="info" style="display:none;">next</span>
+      <span id="i-top" class="info" style="display:none;">back to top</span>
+      <span id="i-share" class="info" style="display:none;">share</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/qtconsole进阶玩法/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/qtconsole进阶玩法/&text=qtconsole进阶玩法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/qtconsole进阶玩法/&is_video=false&description=qtconsole进阶玩法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=qtconsole进阶玩法&body=Check out this article: http://yoursite.com/qtconsole进阶玩法/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/qtconsole进阶玩法/&name=qtconsole进阶玩法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#更改启动方式并添加参数"><span class="toc-number">1.</span> <span class="toc-text">更改启动方式并添加参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改qtconsole图标"><span class="toc-number">2.</span> <span class="toc-text">更改qtconsole图标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成并修改配置文件"><span class="toc-number">3.</span> <span class="toc-text">生成并修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后的效果图"><span class="toc-number">4.</span> <span class="toc-text">最后的效果图</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        qtconsole进阶玩法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Codeslant</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-07T09:49:09.000Z" itemprop="datePublished">2018-08-07</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>如果说ipython是一个增强的交互式python shell，那么qtconsole便是再次增强的ipython。</p>
+<p>以前我是喜欢用ipython的，后来接触到qtconsole时感受到了强大之处，但是qtconsole一直让我不满意，默认的白色和默认的字体都让我非常抵触，与ipython的酷炫黑形成鲜明对比。可能因为国内很少有开发者使用qtconsole的原因，相关的教程也是非常少。</p>
+<h2 id="更改启动方式并添加参数"><a href="#更改启动方式并添加参数" class="headerlink" title="更改启动方式并添加参数"></a>更改启动方式并添加参数</h2><ol>
+<li><p>首先在电脑某一处创建空文件夹，位置和名称随意，你开心就好。拷贝该文件夹路径，在环境变量中新建系统变量，值就是刚刚拷贝的路径。</p>
+</li>
+<li><p>接下来找到源程序(\Anaconda3\Scripts\jupyter-qtconsole.exe)，右击创建快捷方式，将快捷方式重命名(例：qtconsole)并剪切到上述文件夹中。</p>
+</li>
+<li><p>最后win + r快速启动，输入qtconsole，即成功打开程序。</p>
+</li>
+<li><p>快捷方式属性中run选择最小化，target中再添加( —-JupyterWidget.font_size=14 —-style=fruity)，注意—-前面有空格。前者调整qtconsole显示的字体大小，后者是语法高亮</p>
+<center><br><img src="https://s5.postimg.cc/bpn7qim9j/qtconsole_properties.png" width="40%" height="40%"><br></center>
+
+</li>
+</ol>
+<p>这样的启动方式适用于所有的其他程序，因为已经将文件夹的路径添加到了系统的环境变量，快速启动键入程序名时系统会搜索路径下的内容。</p>
+<h2 id="更改qtconsole图标"><a href="#更改qtconsole图标" class="headerlink" title="更改qtconsole图标"></a>更改qtconsole图标</h2><p>按照上述方式创建的快捷方式是没有图标的，在快捷方式的属性中，改变图标，路径是：%USERPROFILE%\Anaconda3\Menu\Iconleak-Atrous-Console.ico（如果你的anaconda是默认安装路径的话）</p>
+<h2 id="生成并修改配置文件"><a href="#生成并修改配置文件" class="headerlink" title="生成并修改配置文件"></a>生成并修改配置文件</h2><p>cmd使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter console --generate-config</span><br></pre></td></tr></table></figure>
+<p>使用编辑器打开jupyter_qtconsole_config.py，每一项都有注释，在此不再赘述。根据个人喜好修改以下参数：</p>
+<p><img src="https://s5.postimg.cc/goaq51xs7/qtconsole_configuration.png"></p>
+<p>CSS stylesheet需在指定目录下手动创建，添加以下内容(仅供参考，可自行修改)：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QPlainTextEdit</span>, <span class="selector-tag">QTextEdit</span> &#123; <span class="attribute">background-color</span>: <span class="number">#0C0C0C</span>;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#CCCCCC</span> ;</span><br><span class="line">        <span class="attribute">selection-background-color</span>: &#125;</span><br><span class="line"><span class="selector-class">.error</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br><span class="line"><span class="selector-class">.in-prompt</span> &#123; <span class="attribute">color</span>:<span class="number">#13A10E</span>; &#125;</span><br><span class="line"><span class="selector-class">.in-prompt-number</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span><br><span class="line"><span class="selector-class">.out-prompt</span> &#123; <span class="attribute">color</span>: <span class="number">#C50F1F</span>; &#125;</span><br><span class="line"><span class="selector-class">.out-prompt-number</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span><br><span class="line"><span class="comment">/* .inverted is used to highlight selected completion */</span></span><br><span class="line"><span class="selector-class">.inverted</span> &#123; <span class="attribute">background-color</span>: <span class="number">#F2F2F2</span> ; <span class="attribute">color</span>: black; &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最后的效果图"><a href="#最后的效果图" class="headerlink" title="最后的效果图"></a>最后的效果图</h2><center><br><img src="https://s5.postimg.cc/pw2ylrck7/jupyterqtconsole.png" width="70%" height="70%"><br></center>
+
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#更改启动方式并添加参数"><span class="toc-number">1.</span> <span class="toc-text">更改启动方式并添加参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改qtconsole图标"><span class="toc-number">2.</span> <span class="toc-text">更改qtconsole图标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成并修改配置文件"><span class="toc-number">3.</span> <span class="toc-text">生成并修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后的效果图"><span class="toc-number">4.</span> <span class="toc-text">最后的效果图</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/qtconsole进阶玩法/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/qtconsole进阶玩法/&text=qtconsole进阶玩法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/qtconsole进阶玩法/&is_video=false&description=qtconsole进阶玩法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=qtconsole进阶玩法&body=Check out this article: http://yoursite.com/qtconsole进阶玩法/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/qtconsole进阶玩法/&title=qtconsole进阶玩法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/qtconsole进阶玩法/&name=qtconsole进阶玩法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Index</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back to top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Clarence Christ
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
