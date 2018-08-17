@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="Codeslant">
 <meta property="og:description" content="如果说ipython是一个增强的交互式python shell，那么qtconsole便是再次增强的ipython。 以前我是喜欢用ipython的，后来接触到qtconsole时感受到了强大之处，但是qtconsole一直让我不满意，默认的白色和默认的字体都让我非常抵触，与ipython的酷炫黑形成鲜明对比。可能因为国内很少有开发者使用qtconsole的原因，相关的教程也是非常少。 更改启动方">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s5.postimg.cc/bpn7qim9j/qtconsole_properties.png">
-<meta property="og:image" content="https://s5.postimg.cc/goaq51xs7/qtconsole_configuration.png">
-<meta property="og:image" content="https://s5.postimg.cc/pw2ylrck7/jupyterqtconsole.png">
-<meta property="og:updated_time" content="2018-08-17T11:40:25.411Z">
+<meta property="og:image" content="https://i.loli.net/2018/08/17/5b76ba57c3247.png">
+<meta property="og:image" content="https://i.loli.net/2018/08/17/5b76ba57dc76d.png">
+<meta property="og:image" content="https://i.loli.net/2018/08/17/5b76ba57d8f48.png">
+<meta property="og:updated_time" content="2018-08-17T12:08:26.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="qtconsole进阶玩法">
 <meta name="twitter:description" content="如果说ipython是一个增强的交互式python shell，那么qtconsole便是再次增强的ipython。 以前我是喜欢用ipython的，后来接触到qtconsole时感受到了强大之处，但是qtconsole一直让我不满意，默认的白色和默认的字体都让我非常抵触，与ipython的酷炫黑形成鲜明对比。可能因为国内很少有开发者使用qtconsole的原因，相关的教程也是非常少。 更改启动方">
-<meta name="twitter:image" content="https://s5.postimg.cc/bpn7qim9j/qtconsole_properties.png">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/17/5b76ba57c3247.png">
     
     
         
@@ -144,7 +144,7 @@
 <li><p>最后win + r快速启动，输入qtconsole，即成功打开程序。</p>
 </li>
 <li><p>快捷方式属性中run选择最小化，target中再添加( —-JupyterWidget.font_size=14 —-style=fruity)，注意—-前面有空格。前者调整qtconsole显示的字体大小，后者是语法高亮</p>
-<center><br><img src="https://s5.postimg.cc/bpn7qim9j/qtconsole_properties.png" width="40%" height="40%"><br></center>
+<center><br><img src="https://i.loli.net/2018/08/17/5b76ba57c3247.png" width="40%" height="40%"><br></center>
 
 </li>
 </ol>
@@ -153,10 +153,10 @@
 <h2 id="生成并修改配置文件"><a href="#生成并修改配置文件" class="headerlink" title="生成并修改配置文件"></a>生成并修改配置文件</h2><p>cmd使用命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter console --generate-config</span><br></pre></td></tr></table></figure>
 <p>使用编辑器打开jupyter_qtconsole_config.py，每一项都有注释，在此不再赘述。根据个人喜好修改以下参数：</p>
-<p><img src="https://s5.postimg.cc/goaq51xs7/qtconsole_configuration.png"></p>
+<p><img src="https://i.loli.net/2018/08/17/5b76ba57dc76d.png"></p>
 <p>CSS stylesheet需在指定目录下手动创建，添加以下内容(仅供参考，可自行修改)：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QPlainTextEdit</span>, <span class="selector-tag">QTextEdit</span> &#123; <span class="attribute">background-color</span>: <span class="number">#0C0C0C</span>;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#CCCCCC</span> ;</span><br><span class="line">        <span class="attribute">selection-background-color</span>: &#125;</span><br><span class="line"><span class="selector-class">.error</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br><span class="line"><span class="selector-class">.in-prompt</span> &#123; <span class="attribute">color</span>:<span class="number">#13A10E</span>; &#125;</span><br><span class="line"><span class="selector-class">.in-prompt-number</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span><br><span class="line"><span class="selector-class">.out-prompt</span> &#123; <span class="attribute">color</span>: <span class="number">#C50F1F</span>; &#125;</span><br><span class="line"><span class="selector-class">.out-prompt-number</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span><br><span class="line"><span class="comment">/* .inverted is used to highlight selected completion */</span></span><br><span class="line"><span class="selector-class">.inverted</span> &#123; <span class="attribute">background-color</span>: <span class="number">#F2F2F2</span> ; <span class="attribute">color</span>: black; &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="最后的效果图"><a href="#最后的效果图" class="headerlink" title="最后的效果图"></a>最后的效果图</h2><center><br><img src="https://s5.postimg.cc/pw2ylrck7/jupyterqtconsole.png" width="70%" height="70%"><br></center>
+<h2 id="最后的效果图"><a href="#最后的效果图" class="headerlink" title="最后的效果图"></a>最后的效果图</h2><center><br><img src="https://i.loli.net/2018/08/17/5b76ba57d8f48.png" width="70%" height="70%"><br></center>
 
 
   </div>
