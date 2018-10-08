@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="python不需要导入库即可进行复数运算，但配合cmath则更加得心应手。 直角坐标和极坐标的转换：12# 返回复数x的极坐标形式(r, phi)cmath.polar(x) 12# 返回直角坐标形式的复数xcmath.rect(r, phi) 123456789# 复数的模直接使用内置函数abs()即可# 返回复数x的相位，范围在-π到π之间cmath.phase(x)# Attention:p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python模块cmath详解">
+<meta property="og:url" content="http://yoursite.com/python模块cmath详解/index.html">
+<meta property="og:site_name" content="Codeslant">
+<meta property="og:description" content="python不需要导入库即可进行复数运算，但配合cmath则更加得心应手。 直角坐标和极坐标的转换：12# 返回复数x的极坐标形式(r, phi)cmath.polar(x) 12# 返回直角坐标形式的复数xcmath.rect(r, phi) 123456789# 复数的模直接使用内置函数abs()即可# 返回复数x的相位，范围在-π到π之间cmath.phase(x)# Attention:p">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-08T14:11:30.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python模块cmath详解">
+<meta name="twitter:description" content="python不需要导入库即可进行复数运算，但配合cmath则更加得心应手。 直角坐标和极坐标的转换：12# 返回复数x的极坐标形式(r, phi)cmath.polar(x) 12# 返回直角坐标形式的复数xcmath.rect(r, phi) 123456789# 复数的模直接使用内置函数abs()即可# 返回复数x的相位，范围在-π到π之间cmath.phase(x)# Attention:p">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>python模块cmath详解</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/numpy基础及常用方法/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">previous</span>
+      <span id="i-next" class="info" style="display:none;">next</span>
+      <span id="i-top" class="info" style="display:none;">back to top</span>
+      <span id="i-share" class="info" style="display:none;">share</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/python模块cmath详解/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/python模块cmath详解/&text=python模块cmath详解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/python模块cmath详解/&is_video=false&description=python模块cmath详解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python模块cmath详解&body=Check out this article: http://yoursite.com/python模块cmath详解/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/python模块cmath详解/&name=python模块cmath详解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#直角坐标和极坐标的转换："><span class="toc-number">1.</span> <span class="toc-text">直角坐标和极坐标的转换：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指数和对数函数："><span class="toc-number">2.</span> <span class="toc-text">指数和对数函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三角函数："><span class="toc-number">3.</span> <span class="toc-text">三角函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双曲函数："><span class="toc-number">4.</span> <span class="toc-text">双曲函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类函数："><span class="toc-number">5.</span> <span class="toc-text">分类函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量："><span class="toc-number">6.</span> <span class="toc-text">常量：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        python模块cmath详解
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Codeslant</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-08T13:27:24.000Z" itemprop="datePublished">2018-10-08</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>python不需要导入库即可进行复数运算，但配合cmath则更加得心应手。</p>
+<h2 id="直角坐标和极坐标的转换："><a href="#直角坐标和极坐标的转换：" class="headerlink" title="直角坐标和极坐标的转换："></a>直角坐标和极坐标的转换：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回复数x的极坐标形式(r, phi)</span></span><br><span class="line">cmath.polar(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回直角坐标形式的复数x</span></span><br><span class="line">cmath.rect(r, phi)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复数的模直接使用内置函数abs()即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回复数x的相位，范围在-π到π之间</span></span><br><span class="line">cmath.phase(x)</span><br><span class="line"><span class="comment"># Attention:</span></span><br><span class="line">phase(complex(<span class="number">-1.0</span>, <span class="number">0.0</span>))</span><br><span class="line"><span class="comment"># 3.141592653589793</span></span><br><span class="line">phase(complex(<span class="number">-1.0</span>, <span class="number">-0.0</span>))</span><br><span class="line"><span class="comment"># -3.141592653589793</span></span><br></pre></td></tr></table></figure>
+<h2 id="指数和对数函数："><a href="#指数和对数函数：" class="headerlink" title="指数和对数函数："></a>指数和对数函数：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cmath.exp(x)</span><br><span class="line"><span class="comment"># base未指定即ln(x)</span></span><br><span class="line">cmath.log(x[, base])</span><br><span class="line"><span class="comment"># 即lg(x)</span></span><br><span class="line">cmath.log10(x)</span><br><span class="line">cmath.sqrt(x)</span><br></pre></td></tr></table></figure>
+<h2 id="三角函数："><a href="#三角函数：" class="headerlink" title="三角函数："></a>三角函数：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cmath.sin(x)</span><br><span class="line">cmath.cos(x)</span><br><span class="line">cmath.tan(x)</span><br><span class="line">cmath.asin(X)</span><br><span class="line">cmath.acos(x)</span><br><span class="line">cmath.atan(x)</span><br></pre></td></tr></table></figure>
+<h2 id="双曲函数："><a href="#双曲函数：" class="headerlink" title="双曲函数："></a>双曲函数：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回x的双曲正弦值</span></span><br><span class="line">cmath.sinh(x)</span><br><span class="line"><span class="comment"># 返回x的双曲余弦值</span></span><br><span class="line">cmath.cosh(x)</span><br><span class="line"><span class="comment"># 返回x的双曲正切值</span></span><br><span class="line">cmath.tanh(x)</span><br><span class="line"><span class="comment"># 返回x的反双曲正弦值</span></span><br><span class="line">cmath.asinh(X)</span><br><span class="line"><span class="comment"># 返回x的反双曲余弦值</span></span><br><span class="line">cmath.acosh(x)</span><br><span class="line"><span class="comment"># 返回x的反双曲正切值</span></span><br><span class="line">cmath.atanh(x)</span><br></pre></td></tr></table></figure>
+<h2 id="分类函数："><a href="#分类函数：" class="headerlink" title="分类函数："></a>分类函数：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 若复数x的实部和虚部均是有限的，返回True</span></span><br><span class="line">cmath.isfinite(x)</span><br><span class="line"><span class="comment"># 若复数x的实部或虚部是无限的，返回True</span></span><br><span class="line">cmath.isinf(x)</span><br><span class="line"><span class="comment"># 若复数x的实部或虚部是NaN，返回True</span></span><br><span class="line">cmath.isnan(x)</span><br><span class="line"><span class="comment"># 若复数a和b接近则返回True，否则False</span></span><br><span class="line"><span class="comment"># 两个值是否接近由给定的相对误差或绝对误差决定</span></span><br><span class="line"><span class="comment"># 相对误差默认为1e-09，必须大于0；绝对误差必须大于等于0</span></span><br><span class="line">cmath.isclose(a, b, *, rel_tol=<span class="number">1e-09</span>, abs_tol=<span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="常量："><a href="#常量：" class="headerlink" title="常量："></a>常量：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cmath.pi</span><br><span class="line"><span class="comment"># 3.141592653589793</span></span><br><span class="line">cmath.e</span><br><span class="line"><span class="comment"># 2.718281828459045</span></span><br><span class="line">cmath.tau</span><br><span class="line"><span class="comment"># 6.283185307179586</span></span><br><span class="line">cmath.inf</span><br><span class="line"><span class="comment"># inf</span></span><br><span class="line">cmath.infj</span><br><span class="line"><span class="comment"># infj</span></span><br><span class="line">cmath.nan</span><br><span class="line"><span class="comment"># nan</span></span><br><span class="line">cmath.nanj</span><br><span class="line"><span class="comment"># nanj</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#直角坐标和极坐标的转换："><span class="toc-number">1.</span> <span class="toc-text">直角坐标和极坐标的转换：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指数和对数函数："><span class="toc-number">2.</span> <span class="toc-text">指数和对数函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三角函数："><span class="toc-number">3.</span> <span class="toc-text">三角函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双曲函数："><span class="toc-number">4.</span> <span class="toc-text">双曲函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类函数："><span class="toc-number">5.</span> <span class="toc-text">分类函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量："><span class="toc-number">6.</span> <span class="toc-text">常量：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/python模块cmath详解/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/python模块cmath详解/&text=python模块cmath详解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/python模块cmath详解/&is_video=false&description=python模块cmath详解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python模块cmath详解&body=Check out this article: http://yoursite.com/python模块cmath详解/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/python模块cmath详解/&title=python模块cmath详解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/python模块cmath详解/&name=python模块cmath详解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Index</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Clarence Christ
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
