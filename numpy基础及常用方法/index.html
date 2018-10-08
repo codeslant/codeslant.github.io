@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Codeslant">
 <meta property="og:description" content="本文简单列举了numpy中常见的一些方法，主要分为两部分：  简单介绍数组操作 线性代数部分  创建数组方法：1np.array([[1, 2, 3, 4], [5, 6, 7, 8]])  #多维数组的生成 12array([[1, 2, 3, 4],       [5, 6, 7, 8]]) 1234a = np.arange(0,10,1)b = np.linspace(0,10,20,en">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-08T13:08:33.314Z">
+<meta property="og:updated_time" content="2018-10-08T13:14:39.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="numpy基础及常用方法">
 <meta name="twitter:description" content="本文简单列举了numpy中常见的一些方法，主要分为两部分：  简单介绍数组操作 线性代数部分  创建数组方法：1np.array([[1, 2, 3, 4], [5, 6, 7, 8]])  #多维数组的生成 12array([[1, 2, 3, 4],       [5, 6, 7, 8]]) 1234a = np.arange(0,10,1)b = np.linspace(0,10,20,en">
@@ -171,7 +171,16 @@
 </ol>
 <h2 id="二元通用函数："><a href="#二元通用函数：" class="headerlink" title="二元通用函数："></a>二元通用函数：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">y = np.array([<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br><span class="line">print(<span class="string">'add():'</span>,<span class="string">'\n'</span>,np.add(x,y))</span><br><span class="line">print(<span class="string">'subtract():'</span>,<span class="string">'\n'</span>,np.subtract(x,y))</span><br><span class="line">print(<span class="string">'multiply():'</span>,<span class="string">'\n'</span>,np.multiply(x,y))</span><br><span class="line">print(<span class="string">'divide():'</span>,<span class="string">'\n'</span>,np.divide(x,y))</span><br><span class="line">print(<span class="string">'floor_divide():'</span>,<span class="string">'\n'</span>,np.floor_divide(x,y))</span><br><span class="line">print(<span class="string">'power():'</span>,<span class="string">'\n'</span>,np.power(x,y))</span><br><span class="line">print(<span class="string">'maximum():'</span>,<span class="string">'\n'</span>,np.maximum(x,y))</span><br><span class="line">print(<span class="string">'fmax():忽略NaN'</span>,<span class="string">'\n'</span>,np.fmax(x,y))</span><br><span class="line">print(<span class="string">'mod():x/y的余数'</span>,<span class="string">'\n'</span>,np.mod(x,y))</span><br><span class="line">print(<span class="string">'copysign():y的符号copy to x'</span>,<span class="string">'\n'</span>,np.copysign(x,y))</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">add(): </span><br><span class="line"> [ 5  7  9 11 13]</span><br><span class="line">subtract(): </span><br><span class="line"> [-5 -5 -5 -5 -5]</span><br><span class="line">multiply(): </span><br><span class="line"> [ 0  6 14 24 36]</span><br><span class="line">divide(): </span><br><span class="line"> [0.         0.16666667 0.28571429 0.375      0.44444444]</span><br><span class="line">floor_divide(): </span><br><span class="line"> [0 0 0 0 0]</span><br><span class="line">power(): </span><br><span class="line"> [     0      1    128   6561 262144]</span><br><span class="line">maximum(): </span><br><span class="line"> [5 6 7 8 9]</span><br><span class="line">fmax():忽略NaN </span><br><span class="line"> [5 6 7 8 9]</span><br><span class="line">mod():x/y的余数 </span><br><span class="line"> [0 1 2 3 4]</span><br><span class="line">copysign():y的符号copy to x </span><br><span class="line"> [0. 1. 2. 3. 4.]</span><br></pre></td></tr></table></figure>
-<p>除此之外，还有一系列逻辑函数(greater,greater_equal,less,less_equal,logical_and,logical_not,logical_xor)</p>
+<p>除此之外，还有一系列逻辑函数：</p>
+<ul>
+<li>greater</li>
+<li>greater_equal</li>
+<li>less</li>
+<li>less_equal</li>
+<li>logical_and</li>
+<li>logical_not</li>
+<li>logical_xor</li>
+</ul>
 <h2 id="矩阵乘法三种方式："><a href="#矩阵乘法三种方式：" class="headerlink" title="矩阵乘法三种方式："></a>矩阵乘法三种方式：</h2><ol>
 <li>x.dot(y)</li>
 <li>np.dot(x,y)</li>
