@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="身为一个折腾党，用过很多IDE和编辑器，IDE我只推荐pycharm和vscode。FYI，如果有教育邮箱，就可以申请免费使用pycharm专业版，经济支持的还是强烈推荐使用正版的pycharm专业版，一款非常强大的集成开发环境！可是每年一两百美元的我负担不起啊！编辑器推荐的是vim，Sublime text 3：vim的学习成本不低，如果已经使用了vim想转向atom也是非常容易的，atom中有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在atom中配置python开发环境">
+<meta property="og:url" content="http://yoursite.com/在atom中配置python开发环境/index.html">
+<meta property="og:site_name" content="Codeslant">
+<meta property="og:description" content="身为一个折腾党，用过很多IDE和编辑器，IDE我只推荐pycharm和vscode。FYI，如果有教育邮箱，就可以申请免费使用pycharm专业版，经济支持的还是强烈推荐使用正版的pycharm专业版，一款非常强大的集成开发环境！可是每年一两百美元的我负担不起啊！编辑器推荐的是vim，Sublime text 3：vim的学习成本不低，如果已经使用了vim想转向atom也是非常容易的，atom中有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd42161ab862.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd425146cb3f.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd425f6749d4.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd429cc4f06c.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd4361bd05ba.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd43aea95487.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd44cf75b5fb.png">
+<meta property="og:updated_time" content="2018-10-27T14:27:40.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在atom中配置python开发环境">
+<meta name="twitter:description" content="身为一个折腾党，用过很多IDE和编辑器，IDE我只推荐pycharm和vscode。FYI，如果有教育邮箱，就可以申请免费使用pycharm专业版，经济支持的还是强烈推荐使用正版的pycharm专业版，一款非常强大的集成开发环境！可是每年一两百美元的我负担不起啊！编辑器推荐的是vim，Sublime text 3：vim的学习成本不低，如果已经使用了vim想转向atom也是非常容易的，atom中有">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/27/5bd42161ab862.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>在atom中配置python开发环境</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/cmath模块详解/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">previous</span>
+      <span id="i-next" class="info" style="display:none;">next</span>
+      <span id="i-top" class="info" style="display:none;">back to top</span>
+      <span id="i-share" class="info" style="display:none;">share</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/在atom中配置python开发环境/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/在atom中配置python开发环境/&text=在atom中配置python开发环境"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/在atom中配置python开发环境/&is_video=false&description=在atom中配置python开发环境"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=在atom中配置python开发环境&body=Check out this article: http://yoursite.com/在atom中配置python开发环境/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/在atom中配置python开发环境/&name=在atom中配置python开发环境&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方宣传片"><span class="toc-number">1.</span> <span class="toc-text">官方宣传片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#atom的主题插件"><span class="toc-number">2.</span> <span class="toc-text">atom的主题插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python开发环境必备插件"><span class="toc-number">3.</span> <span class="toc-text">python开发环境必备插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他有用的插件"><span class="toc-number">4.</span> <span class="toc-text">其他有用的插件</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        在atom中配置python开发环境
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Codeslant</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-27T14:20:41.000Z" itemprop="datePublished">2018-10-27</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>身为一个折腾党，用过很多IDE和编辑器，IDE我只推荐pycharm和vscode。FYI，如果有教育邮箱，就可以申请免费使用pycharm专业版，经济支持的还是强烈推荐使用正版的pycharm专业版，一款非常强大的集成开发环境！可是每年一两百美元的我负担不起啊！编辑器推荐的是vim，Sublime text 3：vim的学习成本不低，如果已经使用了vim想转向atom也是非常容易的，atom中有相关的vim插件让你顺滑过渡；Sublime text 3需要注册码，而且一更新原来的注册码便不能用了，不过也是可以通过禁用更新来取巧，网上还有一些已经破解的Sublime text 3。使用各种破解方法也是一门学问，日后有机会和大家交流，可是怎么能甘心用破解的呢？接下来就要介绍宇宙超强的编辑器——Atom！</p>
+<h3 id="官方宣传片"><a href="#官方宣传片" class="headerlink" title="官方宣传片"></a>官方宣传片</h3><p><a href="https://www.bilibili.com/video/av2497914/" target="_blank" rel="noopener">全家欢乐程序猿</a></p>
+<h3 id="atom的主题插件"><a href="#atom的主题插件" class="headerlink" title="atom的主题插件"></a>atom的主题插件</h3><p>atom的主题分为UI Theme(图形界面主题)和Syntax Theme(语法主题)两种。</p>
+<p><img src="https://i.loli.net/2018/10/27/5bd42161ab862.png"></p>
+<p>atom默认为用户安装了4种图形界面主题和8种语法主题。根据个人喜好，不满意的可以安装<a href="https://atom.io/packages" target="_blank" rel="noopener">其他主题</a>，一些图形界面主题安装后，用户可进一步自定义，自由度可能更高；对于语法主题，点击“View Code”后，在他人的基础上修改代码，更改各语言高亮颜色。</p>
+<p><img src="https://i.loli.net/2018/10/27/5bd425146cb3f.png"></p>
+<p><img src="https://i.loli.net/2018/10/27/5bd425f6749d4.png"></p>
+<p>我用的语法主题是atom-material-syntax-dark，在作者的基础上修改了部分。效果如下：</p>
+<p><img src="https://i.loli.net/2018/10/27/5bd429cc4f06c.png"></p>
+<h3 id="python开发环境必备插件"><a href="#python开发环境必备插件" class="headerlink" title="python开发环境必备插件"></a>python开发环境必备插件</h3><ol>
+<li><p>atom-clock</p>
+<p>一款在右下角显示时间的插件，显示的格式可自定义。</p>
+</li>
+<li><p>atom-beautify</p>
+<p>一款美化多种语言的插件，缩进大小，pep8格式等等。</p>
+</li>
+<li><p>atom-alignment</p>
+<p>一款对齐格式的插件，效果如下：</p>
+<p><img src="https://i.loli.net/2018/10/27/5bd4361bd05ba.png"></p>
+</li>
+<li><p>file-icons</p>
+<p>不同类型的文件前会有图标显示，蛮好看的，看图标就可以快速了解各文件类型了。此插件提供的文件种类非常多。</p>
+<p><img src="https://i.loli.net/2018/10/27/5bd43aea95487.png"></p>
+</li>
+<li><p>minimap</p>
+<p>写代码的时候，在右侧显示小地图，实践证明，是一个很好用的插件。&lt;(<em>￣▽￣</em>)/</p>
+<p><img src="https://i.loli.net/2018/10/27/5bd44cf75b5fb.png"></p>
+</li>
+<li><p>minimap-autohider</p>
+<p>不滚动时自动隐藏小地图，配合上面的插件用的。</p>
+</li>
+<li><p>python-indent</p>
+<p>python pep8自动缩进，不解释了。</p>
+</li>
+<li><p>python-tools</p>
+<p>这个插件是比较常用的，查看方法定义的时候按ctrl-alt-g可以快速定位方法定义的地方。</p>
+</li>
+<li><p>atom-python-run</p>
+<p>F5运行脚本，必备。</p>
+</li>
+<li><p>autocomplete-python</p>
+<p>代码自动补全，效率极大提高。</p>
+<iframe src="https://cloud.githubusercontent.com/assets/193864/12288427/61fe2114-ba0f-11e5-9832-98869180d87f.gif">
+</iframe></li>
+<li><p>script</p>
+<p>此插件可以代替atom-python-run，功能还更强大，直接在编辑器内显示结果，融合度非常高。</p>
+</li>
+<li><p>Hydrogen</p>
+<p>充分发挥Jupyter，不论是调试，还是查看结果，满足你对python的一切幻想。(๑¯∀¯๑)</p>
+<iframe src="https://cloud.githubusercontent.com/assets/13285808/20360886/7e03e524-ac03-11e6-9176-37677f226619.gif">
+
+</iframe></li>
+</ol>
+<h3 id="其他有用的插件"><a href="#其他有用的插件" class="headerlink" title="其他有用的插件"></a>其他有用的插件</h3><p>再推荐几个有用的插件：</p>
+<ul>
+<li>platformio-ide-terminal</li>
+<li>zentabs</li>
+<li>teletype</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方宣传片"><span class="toc-number">1.</span> <span class="toc-text">官方宣传片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#atom的主题插件"><span class="toc-number">2.</span> <span class="toc-text">atom的主题插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python开发环境必备插件"><span class="toc-number">3.</span> <span class="toc-text">python开发环境必备插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他有用的插件"><span class="toc-number">4.</span> <span class="toc-text">其他有用的插件</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/在atom中配置python开发环境/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/在atom中配置python开发环境/&text=在atom中配置python开发环境"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/在atom中配置python开发环境/&is_video=false&description=在atom中配置python开发环境"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=在atom中配置python开发环境&body=Check out this article: http://yoursite.com/在atom中配置python开发环境/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/在atom中配置python开发环境/&title=在atom中配置python开发环境"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/在atom中配置python开发环境/&name=在atom中配置python开发环境&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Index</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Clarence Christ
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
