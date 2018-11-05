@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="什么是SymPy？SymPy是一个用于符号数学的Python库。 它旨在成为一个功能齐全的计算机代数系统（CAS），同时保持代码尽可能简单，以便易于理解和易于扩展。为什么要写这篇文章呢，Python本身已经是一个强大的计算器了，内置函数就可以进行三角函数和复数的运算等等，之前也提到了cmath库，它的全部用法也就是那么多，作为对复数运算的一个简单扩充。但是，在高等数学中，常见的极限、求导和积分运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SymPy入门">
+<meta property="og:url" content="http://yoursite.com/SymPy入门/index.html">
+<meta property="og:site_name" content="Codeslant">
+<meta property="og:description" content="什么是SymPy？SymPy是一个用于符号数学的Python库。 它旨在成为一个功能齐全的计算机代数系统（CAS），同时保持代码尽可能简单，以便易于理解和易于扩展。为什么要写这篇文章呢，Python本身已经是一个强大的计算器了，内置函数就可以进行三角函数和复数的运算等等，之前也提到了cmath库，它的全部用法也就是那么多，作为对复数运算的一个简单扩充。但是，在高等数学中，常见的极限、求导和积分运算">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-05T14:33:24.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SymPy入门">
+<meta name="twitter:description" content="什么是SymPy？SymPy是一个用于符号数学的Python库。 它旨在成为一个功能齐全的计算机代数系统（CAS），同时保持代码尽可能简单，以便易于理解和易于扩展。为什么要写这篇文章呢，Python本身已经是一个强大的计算器了，内置函数就可以进行三角函数和复数的运算等等，之前也提到了cmath库，它的全部用法也就是那么多，作为对复数运算的一个简单扩充。但是，在高等数学中，常见的极限、求导和积分运算">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>SymPy入门</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/在atom中配置python开发环境/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">previous</span>
+      <span id="i-next" class="info" style="display:none;">next</span>
+      <span id="i-top" class="info" style="display:none;">back to top</span>
+      <span id="i-share" class="info" style="display:none;">share</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/SymPy入门/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/SymPy入门/&text=SymPy入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/SymPy入门/&is_video=false&description=SymPy入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SymPy入门&body=Check out this article: http://yoursite.com/SymPy入门/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/SymPy入门/&name=SymPy入门&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#abc模块"><span class="toc-number">1.</span> <span class="toc-text">abc模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建符号变量"><span class="toc-number">2.</span> <span class="toc-text">创建符号变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代创建变量"><span class="toc-number">2.1.</span> <span class="toc-text">迭代创建变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建指定特点的符号变量"><span class="toc-number">2.2.</span> <span class="toc-text">创建指定特点的符号变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础运算"><span class="toc-number">3.</span> <span class="toc-text">基础运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量替换-Substitution"><span class="toc-number">3.1.</span> <span class="toc-text">变量替换(Substitution)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换字符串为SymPy表达式"><span class="toc-number">3.2.</span> <span class="toc-text">转换字符串为SymPy表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#evalf函数-evaluate-floating-point-number"><span class="toc-number">3.3.</span> <span class="toc-text">evalf函数(evaluate floating point number)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打印输出"><span class="toc-number">4.</span> <span class="toc-text">打印输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#化简"><span class="toc-number">5.</span> <span class="toc-text">化简</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#simplify"><span class="toc-number">5.1.</span> <span class="toc-text">simplify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expand"><span class="toc-number">5.2.</span> <span class="toc-text">expand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#factor"><span class="toc-number">5.3.</span> <span class="toc-text">factor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trigsimp-三角化简"><span class="toc-number">5.4.</span> <span class="toc-text">trigsimp(三角化简)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微积分"><span class="toc-number">6.</span> <span class="toc-text">微积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#求导—diff"><span class="toc-number">6.1.</span> <span class="toc-text">求导—diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#积分—integrate"><span class="toc-number">6.2.</span> <span class="toc-text">积分—integrate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#极限—limit"><span class="toc-number">6.3.</span> <span class="toc-text">极限—limit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#级数展开"><span class="toc-number">6.4.</span> <span class="toc-text">级数展开</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        SymPy入门
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Codeslant</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-11-05T14:31:36.000Z" itemprop="datePublished">2018-11-05</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>什么是SymPy？SymPy是一个用于符号数学的Python库。 它旨在成为一个功能齐全的计算机代数系统（CAS），同时保持代码尽可能简单，以便易于理解和易于扩展。为什么要写这篇文章呢，Python本身已经是一个强大的计算器了，内置函数就可以进行三角函数和复数的运算等等，之前也提到了cmath库，它的全部用法也就是那么多，作为对复数运算的一个简单扩充。但是，在高等数学中，常见的极限、求导和积分运算却难以在Python中表达，因此SymPy这一符号库应运而生。谈谈我个人对“易于理解和易于扩展”的理解：SymPy与Python配合的很好，SymPy使用Python的语法来构建表达式，换言之，熟悉Python编程的可以很快地适应并掌握SymPy；同时，SymPy支持LaTeX，MathML和Dot等格式输出，有很好的扩展性，我在初次使用SymPy时是被它的简洁优雅而打动。下面的代码绝大多数来自官方文档，引用在此作为对常用属性和方法的一个总结，不求全，但求精。</p>
+<h2 id="abc模块"><a href="#abc模块" class="headerlink" title="abc模块"></a>abc模块</h2><p>该模块的作用就是方便调用符号变量，提高效率。提供英文字母大小写和希腊字母，以下是abc模块中部分代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a, b, c, d, e, f, g, h, i, j = symbols(<span class="string">'a, b, c, d, e, f, g, h, i, j'</span>)</span><br><span class="line">k, l, m, n, o, p, q, r, s, t = symbols(<span class="string">'k, l, m, n, o, p, q, r, s, t'</span>)</span><br><span class="line">u, v, w, x, y, z = symbols(<span class="string">'u, v, w, x, y, z'</span>)</span><br><span class="line"></span><br><span class="line">A, B, C, D, E, F, G, H, I, J = symbols(<span class="string">'A, B, C, D, E, F, G, H, I, J'</span>)</span><br><span class="line">K, L, M, N, O, P, Q, R, S, T = symbols(<span class="string">'K, L, M, N, O, P, Q, R, S, T'</span>)</span><br><span class="line">U, V, W, X, Y, Z = symbols(<span class="string">'U, V, W, X, Y, Z'</span>)</span><br><span class="line"></span><br><span class="line">alpha, beta, gamma, delta = symbols(<span class="string">'alpha, beta, gamma, delta'</span>)</span><br><span class="line">epsilon, zeta, eta, theta = symbols(<span class="string">'epsilon, zeta, eta, theta'</span>)</span><br><span class="line">iota, kappa, lamda, mu = symbols(<span class="string">'iota, kappa, lamda, mu'</span>)</span><br><span class="line">nu, xi, omicron, pi = symbols(<span class="string">'nu, xi, omicron, pi'</span>)</span><br><span class="line">rho, sigma, tau, upsilon = symbols(<span class="string">'rho, sigma, tau, upsilon'</span>)</span><br><span class="line">phi, chi, psi, omega = symbols(<span class="string">'phi, chi, psi, omega'</span>)</span><br></pre></td></tr></table></figure>
+<p>这样做的好处就是，可以很快创建符号变量，需要哪个字母(或希腊字母)直接调用就好，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sympy.abc <span class="keyword">import</span> x, y</span><br></pre></td></tr></table></figure>
+<h2 id="创建符号变量"><a href="#创建符号变量" class="headerlink" title="创建符号变量"></a>创建符号变量</h2><p>符号变量和变量有什么不同呢？打个比方，符号变量就如同数学函数f(x)中的自变量x，而变量就如同一个容器，里面存放着数值。注意，符号变量不能被赋值，但是可以计算在某一点的值，而变量是可以被赋值的，这是很大的不同。在SymPy中，存在大写开头的Symbol()和小写开头的symbols()，前者是一个类，创建Symbol对象。后者是一个操作函数，功能和结果一样，只是实现方法上是有区别的。(ps：参数传递单双引号皆可。)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 单一符号化变量</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = Symbol(<span class="string">'x'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = symbols(<span class="string">'x'</span>)</span><br><span class="line"><span class="comment"># 多重符号化变量</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="string">'x y z'</span>)</span><br><span class="line"><span class="comment"># 另一种写法，字符串可用空格或者逗号分隔</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="string">'x,y,z'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="迭代创建变量"><a href="#迭代创建变量" class="headerlink" title="迭代创建变量"></a>迭代创建变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x:5'</span>)</span><br><span class="line">(x0, x1, x2, x3, x4)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x5:x10'</span>)</span><br><span class="line">(x5, x6, x7, x8, x9)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x5(:2)'</span>)</span><br><span class="line">(x50, x51)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x5:10,y:5'</span>)</span><br><span class="line">(x5, x6, x7, x8, x9, y0, y1, y2, y3, y4)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols((<span class="string">'x5:10'</span>, <span class="string">'y:5'</span>))</span><br><span class="line">((x5, x6, x7, x8, x9), (y0, y1, y2, y3, y4))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x:z'</span>)</span><br><span class="line">(x, y, z)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x:c'</span>)</span><br><span class="line">()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'x(:c)'</span>)</span><br><span class="line">(xa, xb, xc)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">':c'</span>)</span><br><span class="line">(a, b, c)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols(<span class="string">'a:d'</span>,<span class="string">'x:z'</span>)</span><br><span class="line">(a, b, c, d, x, y, z)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>symbols((<span class="string">'a:d'</span>,<span class="string">'x:z'</span>))</span><br><span class="line">((a, b, c, d), (x, y, z))</span><br></pre></td></tr></table></figure>
+<h3 id="创建指定特点的符号变量"><a href="#创建指定特点的符号变量" class="headerlink" title="创建指定特点的符号变量"></a>创建指定特点的符号变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = symbols(<span class="string">'a'</span>, integer=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="string">'x, y, z'</span>, real=<span class="keyword">True</span>)</span><br><span class="line"><span class="comment"># 查看符号的属性</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[attr <span class="keyword">for</span> attr <span class="keyword">in</span> dir(x) <span class="keyword">if</span> attr.startswith(<span class="string">"is_"</span>) <span class="keyword">and</span> attr.lower() == attr]</span><br><span class="line">[<span class="string">'is_algebraic'</span>,</span><br><span class="line"> <span class="string">'is_algebraic_expr'</span>,</span><br><span class="line"> <span class="string">'is_antihermitian'</span>,</span><br><span class="line"> <span class="string">'is_commutative'</span>,</span><br><span class="line"> <span class="string">'is_comparable'</span>,</span><br><span class="line"> <span class="string">'is_complex'</span>,</span><br><span class="line"> <span class="string">'is_composite'</span>,</span><br><span class="line"> <span class="string">'is_constant'</span>,</span><br><span class="line"> <span class="string">'is_even'</span>,</span><br><span class="line"> <span class="string">'is_finite'</span>,</span><br><span class="line"> <span class="string">'is_hermitian'</span>,</span><br><span class="line"> <span class="string">'is_hypergeometric'</span>,</span><br><span class="line"> <span class="string">'is_imaginary'</span>,</span><br><span class="line"> <span class="string">'is_infinite'</span>,</span><br><span class="line"> <span class="string">'is_integer'</span>,</span><br><span class="line"> <span class="string">'is_irrational'</span>,</span><br><span class="line"> <span class="string">'is_negative'</span>,</span><br><span class="line"> <span class="string">'is_noninteger'</span>,</span><br><span class="line"> <span class="string">'is_nonnegative'</span>,</span><br><span class="line"> <span class="string">'is_nonpositive'</span>,</span><br><span class="line"> <span class="string">'is_nonzero'</span>,</span><br><span class="line"> <span class="string">'is_number'</span>,</span><br><span class="line"> <span class="string">'is_odd'</span>,</span><br><span class="line"> <span class="string">'is_polar'</span>,</span><br><span class="line"> <span class="string">'is_polynomial'</span>,</span><br><span class="line"> <span class="string">'is_positive'</span>,</span><br><span class="line"> <span class="string">'is_prime'</span>,</span><br><span class="line"> <span class="string">'is_rational'</span>,</span><br><span class="line"> <span class="string">'is_rational_function'</span>,</span><br><span class="line"> <span class="string">'is_real'</span>,</span><br><span class="line"> <span class="string">'is_symbol'</span>,</span><br><span class="line"> <span class="string">'is_transcendental'</span>,</span><br><span class="line"> <span class="string">'is_zero'</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="基础运算"><a href="#基础运算" class="headerlink" title="基础运算"></a>基础运算</h2><h3 id="变量替换-Substitution"><a href="#变量替换-Substitution" class="headerlink" title="变量替换(Substitution)"></a>变量替换(Substitution)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = cos(x) + <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.subs(x, y)</span><br><span class="line">cos(y) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>变量替换的两个作用：</p>
+<ol>
+<li><p>求出某一点的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.subs(x, <span class="number">0</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用某个表达式去替换另一个表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = x**y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = expr.subs(y, x**y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr</span><br><span class="line">x**(x**y)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>subs方法返回新的表达式，但是不改变SymPy对象。(SymPy表达式是不可变的，所有函数不改变他们，所有函数返回新的表达式。)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = cos(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.subs(x, <span class="number">0</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr</span><br><span class="line">cos(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<h3 id="转换字符串为SymPy表达式"><a href="#转换字符串为SymPy表达式" class="headerlink" title="转换字符串为SymPy表达式"></a>转换字符串为SymPy表达式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>str_expr = <span class="string">"x**2 + 3*x - 1/2"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = sympify(str_expr)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr</span><br><span class="line">x**<span class="number">2</span> + <span class="number">3</span>*x - <span class="number">1</span>/<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.subs(x, <span class="number">2</span>)</span><br><span class="line"><span class="number">19</span>/<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="evalf函数-evaluate-floating-point-number"><a href="#evalf函数-evaluate-floating-point-number" class="headerlink" title="evalf函数(evaluate floating point number)"></a>evalf函数(evaluate floating point number)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = sqrt(<span class="number">8</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.evalf()</span><br><span class="line"><span class="number">2.82842712474619</span></span><br><span class="line"><span class="comment"># 指定位数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pi.evalf(<span class="number">20</span>)</span><br><span class="line"><span class="number">3.1415926535897932385</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = cos(<span class="number">2</span>*x)</span><br><span class="line"><span class="comment"># a dictionary of Symbol: point pairs</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.evalf(subs=&#123;x: <span class="number">2.4</span>&#125;)</span><br><span class="line"><span class="number">0.0874989834394464</span></span><br><span class="line"><span class="comment"># 浮点数过小可置chop为True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>one = cos(<span class="number">1</span>)**<span class="number">2</span> + sin(<span class="number">1</span>)**<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(one - <span class="number">1</span>).evalf()</span><br><span class="line"><span class="number">-0.e-124</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(one - <span class="number">1</span>).evalf(chop=<span class="keyword">True</span>)</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="打印输出"><a href="#打印输出" class="headerlink" title="打印输出"></a>打印输出</h2><p>临时交互测试SymPy的时候，可用以下命令，其中init_printing()函数会自动使用当前环境中最好的打印方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sympy <span class="keyword">import</span> init_session</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>init_session()</span><br><span class="line">IPython console <span class="keyword">for</span> SymPy <span class="number">1.2</span> (Python <span class="number">3.6</span><span class="number">.6</span><span class="number">-64</span>-bit) (ground types: python)</span><br><span class="line"></span><br><span class="line">These commands were executed:</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line">x, y, z, t = symbols(<span class="string">'x y z t'</span>)</span><br><span class="line">k, m, n = symbols(<span class="string">'k m n'</span>, integer=<span class="keyword">True</span>)</span><br><span class="line">f, g, h = symbols(<span class="string">'f g h'</span>, cls=Function)</span><br><span class="line">init_printing()</span><br><span class="line"></span><br><span class="line">Documentation can be found at http://docs.sympy.org/<span class="number">1.2</span>/</span><br></pre></td></tr></table></figure>
+<p>在SymPy中，有以下常用的打印方式：</p>
+<ul>
+<li><p>str</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sympy.abc <span class="keyword">import</span> x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(Integral(sqrt(<span class="number">1</span>/x), x))</span><br><span class="line">Integral(sqrt(<span class="number">1</span>/x), x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>srepr</p>
+</li>
+<li><p>ASCII pretty printer</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>pprint(Integral(sqrt(<span class="number">1</span>/x), x), use_unicode=<span class="keyword">False</span>)</span><br><span class="line">  /          </span><br><span class="line"> |           </span><br><span class="line"> |     ___   </span><br><span class="line"> |    / <span class="number">1</span>    </span><br><span class="line"> |   /  -  dx</span><br><span class="line"> | \/   x    </span><br><span class="line"> |           </span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Unicode pretty printer</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>pprint(Integral(sqrt(<span class="number">1</span>/x), x), use_unicode=<span class="keyword">True</span>)</span><br><span class="line">⌠           </span><br><span class="line">⎮     ___   </span><br><span class="line">⎮    ╱ <span class="number">1</span>    </span><br><span class="line">⎮   ╱  ─  dx</span><br><span class="line">⎮ ╲╱   x    </span><br><span class="line">⌡</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>LaTeX</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(latex(Integral(sqrt(<span class="number">1</span>/x), x)))</span><br><span class="line">\int \sqrt&#123;\frac&#123;<span class="number">1</span>&#125;&#123;x&#125;&#125;\, dx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MathML</p>
+</li>
+<li><p>Dot</p>
+</li>
+</ul>
+<h2 id="化简"><a href="#化简" class="headerlink" title="化简"></a>化简</h2><h3 id="simplify"><a href="#simplify" class="headerlink" title="simplify"></a>simplify</h3><p>函数的作用是简化数学表达式，该函数是一个通用的函数，计算会很耗时；若使用特定的函数则会提高运算速度，接下来的一些函数都是一些特定的化简方法。但是要注意它只适用主要的简化操作，因为简化的定义不是非常明确。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>simplify(sin(x)**<span class="number">2</span> + cos(x)**<span class="number">2</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>simplify(x**<span class="number">2</span> + <span class="number">2</span>*x + <span class="number">1</span>)</span><br><span class="line"> <span class="number">2</span></span><br><span class="line">x  + <span class="number">2</span>⋅x + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="expand"><a href="#expand" class="headerlink" title="expand"></a>expand</h3><p>SymPy中最常用的化简函数之一，用于展开多项表达式。可能展开与化简是对立的，因为它使表达式变得更加复杂，但有些情况下的确会变短。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expand((x+<span class="number">1</span>)**<span class="number">2</span>)</span><br><span class="line">x**<span class="number">2</span> + <span class="number">2</span>*x + <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expand((x + <span class="number">2</span>)*(x - <span class="number">3</span>))</span><br><span class="line">x**<span class="number">2</span> - x - <span class="number">6</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expand((x + <span class="number">1</span>)*(x - <span class="number">2</span>) - (x - <span class="number">1</span>)*x)</span><br><span class="line"><span class="number">-2</span></span><br></pre></td></tr></table></figure>
+<h3 id="factor"><a href="#factor" class="headerlink" title="factor"></a>factor</h3><p>对于多项式，factor()是与expand()相反的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>factor(x**<span class="number">3</span> - x**<span class="number">2</span> + x - <span class="number">1</span>)</span><br><span class="line">(x - <span class="number">1</span>)*(x**<span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>factor(x**<span class="number">2</span>*z + <span class="number">4</span>*x*y*z + <span class="number">4</span>*y**<span class="number">2</span>*z)</span><br><span class="line">z*(x + <span class="number">2</span>*y)**<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="trigsimp-三角化简"><a href="#trigsimp-三角化简" class="headerlink" title="trigsimp(三角化简)"></a>trigsimp(三角化简)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>trigsimp(sin(x)**<span class="number">2</span> + cos(x)**<span class="number">2</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>trigsimp(sin(x)**<span class="number">4</span> - <span class="number">2</span>*cos(x)**<span class="number">2</span>*sin(x)**<span class="number">2</span> + cos(x)**<span class="number">4</span>)</span><br><span class="line">cos(<span class="number">4</span>*x)/<span class="number">2</span> + <span class="number">1</span>/<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>trigsimp(sin(x)*tan(x)/sec(x))</span><br><span class="line">sin(x)**<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h2><h3 id="求导—diff"><a href="#求导—diff" class="headerlink" title="求导—diff"></a>求导—diff</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>diff(sin(x), x)</span><br><span class="line">cos(x)</span><br><span class="line"><span class="comment"># 可以对自变量多次求导</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>diff(x**<span class="number">4</span>, x, x, x)</span><br><span class="line"><span class="number">24</span>*x</span><br><span class="line"><span class="comment"># 数字跟在变量后面指明求导次数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>diff(x**<span class="number">4</span>, x, <span class="number">3</span>)</span><br><span class="line"><span class="number">24</span>*x</span><br><span class="line"><span class="comment"># 求偏导</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = exp(x*y*z)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>diff(expr, x, y, z)</span><br><span class="line">(x**<span class="number">2</span>*y**<span class="number">2</span>*z**<span class="number">2</span> + <span class="number">3</span>*x*y*z + <span class="number">1</span>)*exp(x*y*z)</span><br><span class="line"><span class="comment"># diff作为方法传递参数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.diff(x, y, z)</span><br><span class="line">(x**<span class="number">2</span>*y**<span class="number">2</span>*z**<span class="number">2</span> + <span class="number">3</span>*x*y*z + <span class="number">1</span>)*exp(x*y*z)</span><br><span class="line"><span class="comment"># 使用Derivative类，创建一个先不计算的对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>deriv = Derivative(expr, x, y, z)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>deriv</span><br><span class="line">Derivative(exp(x*y*z), x, y, z)</span><br><span class="line"><span class="comment"># 类的计算调用方法doit()</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>deriv.doit()</span><br><span class="line">(x**<span class="number">2</span>*y**<span class="number">2</span>*z**<span class="number">2</span> + <span class="number">3</span>*x*y*z + <span class="number">1</span>)*exp(x*y*z)</span><br></pre></td></tr></table></figure>
+<h3 id="积分—integrate"><a href="#积分—integrate" class="headerlink" title="积分—integrate"></a>积分—integrate</h3><p>积分分为定积分和不定积分。对于不定积分就是求导的逆运算，因此在表达式后传入变量即可。对于定积分，参数的格式是(integration_variable, lower_limit, upper_limit)。FYI，无穷大在SymPy中的表示为oo。例如：<br>$$<br>\int_{0}^{\infty}e^{-x}\,dx<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>integrate(cos(x), x)</span><br><span class="line">sin(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>integrate(exp(-x), (x, <span class="number">0</span>, oo))</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>对于双重积分，依次传入参数，例如：<br>$$<br>\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}e^{-x^{2}-y^{2}} \, dx\,dy<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>integrate(exp(-x**<span class="number">2</span> - y**<span class="number">2</span>), (x, -oo, oo), (y, -oo, oo))</span><br><span class="line">pi</span><br></pre></td></tr></table></figure>
+<p>如果是不可积的积分，SymPy会返回未计算的积分对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = integrate(x**x, x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(expr)</span><br><span class="line">Integral(x**x, x)</span><br></pre></td></tr></table></figure>
+<p>对应于求导的类Derivative，积分的类是Integral。既保留了待积分式，又可以进行积分运算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = Integral(log(x)**<span class="number">2</span>, x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr</span><br><span class="line">Integral(log(x)**<span class="number">2</span>, x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.doit()</span><br><span class="line">x*log(x)**<span class="number">2</span> - <span class="number">2</span>*x*log(x) + <span class="number">2</span>*x</span><br></pre></td></tr></table></figure>
+<h3 id="极限—limit"><a href="#极限—limit" class="headerlink" title="极限—limit"></a>极限—limit</h3><p>参数格式：limit(f(x), x, x0)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>limit(sin(x)/x, x, <span class="number">0</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = sin(x)/x</span><br><span class="line"><span class="comment"># 注意此处subs的局限性</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.subs(x, <span class="number">0</span>)</span><br><span class="line">nan</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>limit(expr, x, <span class="number">0</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>同样地，极限的类是Limit。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = Limit((cos(x) - <span class="number">1</span>)/x, x, <span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr</span><br><span class="line">Limit((cos(x) - <span class="number">1</span>)/x, x, <span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.doit()</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>计算单侧极限，添加第三个参数，例如求：<br>$$<br>\lim_{x \to 0^{+}}\frac{1}{x}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>limit(<span class="number">1</span>/x, x, <span class="number">0</span>, <span class="string">'+'</span>)</span><br><span class="line">oo</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>limit(<span class="number">1</span>/x, x, <span class="number">0</span>, <span class="string">'-'</span>)</span><br><span class="line">-oo</span><br></pre></td></tr></table></figure>
+<h3 id="级数展开"><a href="#级数展开" class="headerlink" title="级数展开"></a>级数展开</h3><p>SymPy可计算函数在某一点的渐进级数展开。参数格式：f(x).series(x, x0, n)，其中x0和n是可省略的，省略时x0=0且n=6。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = exp(sin(x))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.series(x, <span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line"><span class="number">1</span> + x + x**<span class="number">2</span>/<span class="number">2</span> + O(x**<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.series(x, <span class="number">0</span>, <span class="number">4</span>).removeO()</span><br><span class="line">x**<span class="number">2</span>/<span class="number">2</span> + x + <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exp(x - <span class="number">6</span>).series(x, x0=<span class="number">6</span>)</span><br><span class="line"><span class="number">-5</span> + (x - <span class="number">6</span>)**<span class="number">2</span>/<span class="number">2</span> + (x - <span class="number">6</span>)**<span class="number">3</span>/<span class="number">6</span> + (x - <span class="number">6</span>)**<span class="number">4</span>/<span class="number">24</span> + (x - <span class="number">6</span>)**<span class="number">5</span>/<span class="number">120</span> + x + O((x - <span class="number">6</span>)**<span class="number">6</span>, (x, <span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+<p>SymPy给开发者提供了很好的程序接口，除了以上提到的函数方法，还包括矩阵运算，解方程，解微分方程等其他诸多的内容，主要内容列举于此以供参考。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#abc模块"><span class="toc-number">1.</span> <span class="toc-text">abc模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建符号变量"><span class="toc-number">2.</span> <span class="toc-text">创建符号变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代创建变量"><span class="toc-number">2.1.</span> <span class="toc-text">迭代创建变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建指定特点的符号变量"><span class="toc-number">2.2.</span> <span class="toc-text">创建指定特点的符号变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础运算"><span class="toc-number">3.</span> <span class="toc-text">基础运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量替换-Substitution"><span class="toc-number">3.1.</span> <span class="toc-text">变量替换(Substitution)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换字符串为SymPy表达式"><span class="toc-number">3.2.</span> <span class="toc-text">转换字符串为SymPy表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#evalf函数-evaluate-floating-point-number"><span class="toc-number">3.3.</span> <span class="toc-text">evalf函数(evaluate floating point number)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打印输出"><span class="toc-number">4.</span> <span class="toc-text">打印输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#化简"><span class="toc-number">5.</span> <span class="toc-text">化简</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#simplify"><span class="toc-number">5.1.</span> <span class="toc-text">simplify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expand"><span class="toc-number">5.2.</span> <span class="toc-text">expand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#factor"><span class="toc-number">5.3.</span> <span class="toc-text">factor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trigsimp-三角化简"><span class="toc-number">5.4.</span> <span class="toc-text">trigsimp(三角化简)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微积分"><span class="toc-number">6.</span> <span class="toc-text">微积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#求导—diff"><span class="toc-number">6.1.</span> <span class="toc-text">求导—diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#积分—integrate"><span class="toc-number">6.2.</span> <span class="toc-text">积分—integrate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#极限—limit"><span class="toc-number">6.3.</span> <span class="toc-text">极限—limit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#级数展开"><span class="toc-number">6.4.</span> <span class="toc-text">级数展开</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/SymPy入门/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/SymPy入门/&text=SymPy入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/SymPy入门/&is_video=false&description=SymPy入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SymPy入门&body=Check out this article: http://yoursite.com/SymPy入门/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/SymPy入门/&title=SymPy入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/SymPy入门/&name=SymPy入门&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Index</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Clarence Christ
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">主页</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="https://github.com/codeslant">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
